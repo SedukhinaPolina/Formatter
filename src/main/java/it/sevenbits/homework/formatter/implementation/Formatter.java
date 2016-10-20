@@ -12,11 +12,6 @@ import it.sevenbits.homework.writer.implementation.filewriter.WriterException;
 public class Formatter implements IFormatter {
 
     /**
-     * rgetg.
-     * dcd
-     */
-
-    /**
      * Format string.
      * @param in input string
      * @param out output string
