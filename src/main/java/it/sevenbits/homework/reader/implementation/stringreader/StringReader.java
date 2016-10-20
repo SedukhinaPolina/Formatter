@@ -31,11 +31,6 @@ public class StringReader implements IReader {
         return inputString[position - 1];
     }
 
-    /**
-     * I don't know for what.
-     */
-    public void close() {
-    }
 
     /**
      * The end of the file verification.

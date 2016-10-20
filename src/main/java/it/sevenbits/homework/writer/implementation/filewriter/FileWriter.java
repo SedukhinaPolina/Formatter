@@ -1,6 +1,5 @@
  package it.sevenbits.homework.writer.implementation.filewriter;
 
-import it.sevenbits.homework.reader.implementation.filereader.ReaderException;
 import it.sevenbits.homework.writer.IWriter;
 
 import java.io.FileNotFoundException;
@@ -9,7 +8,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
  /**
- * Created by polly on 24.04.16.
+ * Writes string to file.
  */
 public class FileWriter implements IWriter {
      /**

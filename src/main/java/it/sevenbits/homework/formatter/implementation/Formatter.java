@@ -11,7 +11,10 @@ import it.sevenbits.homework.writer.implementation.filewriter.WriterException;
  */
 public class Formatter implements IFormatter {
 
-
+    /**
+     * rgetg.
+     * dcd
+     */
 
     /**
      * Format string.
@@ -28,19 +31,22 @@ public class Formatter implements IFormatter {
                 switch (temp) {
                     case '{':
                         countOfTabs++;
-                        out.write(" " + "{\n" + "    ");
+                        out.write(" " + "{\n" + writeSpaces(countOfTabs));
                         break;
                     case '}':
+                        countOfTabs -= 1;
                         out.write("}\n");
-                        countOfTabs--;
                         break;
                     case ';':
-                        out.write("; \n");
+                        out.write("; \n" + writeSpaces(countOfTabs));
                         break;
                     default:
                         out.write("" + temp);
                 }
 
+            }
+            if (countOfTabs != 0) {
+                out.write("error: incorrect number of braces");
             }
         } catch (ReaderException e) {
             System.out.print("Reader exception in formatter");
@@ -49,4 +55,17 @@ public class Formatter implements IFormatter {
         }
     }
 
+    /**
+     *
+     * @param countOfTabs count of tabs
+     * @return string with a specified number of spaces
+     */
+
+    private String writeSpaces(final int countOfTabs) {
+        String temp = "";
+        for (int i = 0; i < countOfTabs; i++) {
+            temp += "\t";
+        }
+        return temp;
+    }
 }

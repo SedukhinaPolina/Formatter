@@ -13,14 +13,21 @@ import it.sevenbits.homework.writer.implementation.stringwriter.StringWriter;
  * Main class.
  */
 public class Main {
+
+    /**
+     * Default constructor.
+     */
+    public Main() {
+    }
+
     /**
      * main.
      * @param args input arguments
      */
     public static void main(final String[] args) {
-        String s = "public final void format(){char temp;while (!in.isEnd()){temp = in.read();}";
+        String s = "public final void format(){char temp;while (!in.isEnd()){temp = in.read();}}";
         StringReader in = new StringReader(s);
-        StringWriter out = new StringWriter();
+        StringWriter out = new StringWriter("");
         Formatter formatter = new Formatter();
         formatter.format(in, out);
         System.out.print(out.getString());
@@ -32,9 +39,9 @@ public class Main {
             formatter.format(fileIn, fileOut);
             fileIn.close();
         } catch (ReaderException e) {
-            System.out.print("reader exception");
+            System.out.print("reader exception in file");
         } catch (WriterException e) {
-            System.out.print("writer exception");
+            System.out.print("writer exception in file");
         }
 
     }

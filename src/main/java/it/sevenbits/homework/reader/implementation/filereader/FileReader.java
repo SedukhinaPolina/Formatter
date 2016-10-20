@@ -5,7 +5,7 @@ import it.sevenbits.homework.reader.IReader;
 import java.io.*;
 
 /**
- * Created by polly on 24.04.16.
+ * Reads characters from file.
  */
 public class FileReader implements IReader {
     /**
@@ -41,7 +41,6 @@ public class FileReader implements IReader {
     }
 
     /**
-     * I don't know for what.
      * @throws ReaderException exception
      */
     public final void close() throws ReaderException {
@@ -55,6 +54,7 @@ public class FileReader implements IReader {
     /**
      * The end of the file verification.
      * @return true if end of string, else false
+     * @throws ReaderException exception
      */
     public final boolean isEnd() throws ReaderException {
         try {

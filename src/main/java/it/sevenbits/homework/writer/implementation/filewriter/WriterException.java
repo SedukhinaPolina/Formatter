@@ -1,7 +1,7 @@
  package it.sevenbits.homework.writer.implementation.filewriter;
 
 /**
- * Created by polly on 26.04.16.
+ * Exception in FileWriter.
  */
 public class WriterException extends Exception {
     /**

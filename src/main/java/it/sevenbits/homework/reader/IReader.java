@@ -9,18 +9,15 @@ public interface IReader {
     /**
      * Reads one character.
      * @return character
-     * @throws ReaderException
+     * @throws ReaderException exception
      */
     char read() throws ReaderException;
 
-    /**
-     * Closes thread.
-     * @throws ReaderException
-     */
-    void close() throws ReaderException;
 
     /**
      * The end of the file verification.
+     * @throws ReaderException exception
+     * @return true if the end of the file
      */
     boolean isEnd() throws ReaderException;
 }

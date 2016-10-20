@@ -1,7 +1,7 @@
 package it.sevenbits.homework.reader.implementation.filereader;
 
 /**
- * Created by polly on 24.04.16.
+ * Exception in FileReader.
  */
 public class ReaderException extends Exception {
     /**

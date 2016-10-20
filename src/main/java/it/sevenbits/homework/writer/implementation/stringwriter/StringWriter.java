@@ -3,26 +3,27 @@
  import it.sevenbits.homework.writer.IWriter;
 
  /**
- * Writes information in different string.
+ * Writes information in different sources.
  */
 public class StringWriter implements IWriter {
-     /**
-      * output string.
-      */
-     private String outputString;
 
      /**
-      * Default constructor.
+      * Tool to build a string.
       */
-     public StringWriter() {
-         outputString = "";
+     private StringBuilder stringBuilder;
+     /**
+      * Default constructor.
+      * @param outputString is output String
+      */
+     public StringWriter(final String outputString) {
+         stringBuilder = new StringBuilder(outputString);
      }
      /**
-      * Writes s in outputString
+      * Writes s in outputString.
       * @param s input string
       */
      public final void write(final String s) {
-        outputString += s;
+         stringBuilder.append(s);
      }
 
 
@@ -32,7 +33,7 @@ public class StringWriter implements IWriter {
       * @return outputString
       */
      public final String getString() {
-         return outputString;
+         return stringBuilder.toString();
      }
 
 }
