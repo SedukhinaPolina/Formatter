@@ -37,9 +37,6 @@ public class StringReader implements IReader {
      * @return true if end of string, else false
      */
     public final boolean isEnd() {
-        if (position < inputString.length) {
-            return false;
-        }
-        return true;
+        return (position > inputString.length - 1);
     }
 }

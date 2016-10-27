@@ -1,4 +1,4 @@
- package it.sevenbits.homework.main;
+package it.sevenbits.homework.main;
 
 import it.sevenbits.homework.formatter.implementation.Formatter;
 import it.sevenbits.homework.reader.implementation.filereader.FileReader;
@@ -13,19 +13,12 @@ import it.sevenbits.homework.writer.implementation.stringwriter.StringWriter;
  * Main class.
  */
 public class Main {
-
-    /**
-     * Default constructor.
-     */
-    public Main() {
-    }
-
     /**
      * main.
      * @param args input arguments
      */
     public static void main(final String[] args) {
-        String s = "public final void format(){char temp;while (!in.isEnd()){temp = in.read();}}";
+        String s = "public char firstChar(String s){char first;if(s!=null){first = s.charAt(0);return first;}}";
         StringReader in = new StringReader(s);
         StringWriter out = new StringWriter("");
         Formatter formatter = new Formatter();

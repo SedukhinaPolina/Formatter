@@ -53,16 +53,13 @@ public class FileReader implements IReader {
 
     /**
      * The end of the file verification.
-     * @return true if end of string, else false
+     * @return true if end of file, else false
      * @throws ReaderException exception
      */
     public final boolean isEnd() throws ReaderException {
         try {
             int count = inputFile.available();
-            if (count > 0) {
-                return false;
-            }
-            return true;
+            return (count == 0);
         } catch (IOException e) {
             throw new ReaderException(e);
         }

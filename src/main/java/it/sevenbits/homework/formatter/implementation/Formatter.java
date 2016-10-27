@@ -6,6 +6,7 @@ import it.sevenbits.homework.writer.IWriter;
 import it.sevenbits.homework.reader.IReader;
 import it.sevenbits.homework.writer.implementation.filewriter.WriterException;
 
+
 /**
  * Formats data received from string.
  */
@@ -19,6 +20,7 @@ public class Formatter implements IFormatter {
     public final void format(final IReader in, final IWriter out) {
         try {
             int countOfTabs = 0;
+            StringBuilder buffer = new StringBuilder("");
             char temp;
             while (!in.isEnd()) {
                 temp = in.read();
@@ -26,20 +28,24 @@ public class Formatter implements IFormatter {
                 switch (temp) {
                     case '{':
                         countOfTabs++;
-                        out.write(" " + "{\n" + writeSpaces(countOfTabs));
+                        buffer.append(" {\n");
+                        buffer.append(writeSpaces(countOfTabs));
+
                         break;
                     case '}':
-                        countOfTabs -= 1;
-                        out.write("}\n");
+                        countOfTabs--;
+                        buffer.insert(buffer.length() - 1, "}\n");
                         break;
                     case ';':
-                        out.write("; \n" + writeSpaces(countOfTabs));
+                        buffer.append(";\n");
+                        buffer.append(writeSpaces(countOfTabs));
                         break;
                     default:
-                        out.write("" + temp);
+                        buffer.append(temp);
                 }
 
             }
+            out.write(buffer.toString());
             if (countOfTabs != 0) {
                 out.write("error: incorrect number of braces");
             }
