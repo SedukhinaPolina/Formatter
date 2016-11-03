@@ -1,7 +1,5 @@
 package it.sevenbits.homework.reader;
 
-import it.sevenbits.homework.reader.implementation.filereader.ReaderException;
-
 /**
  * Reads information from different sources.
  */
@@ -20,4 +18,5 @@ public interface IReader {
      * @return true if the end of the file
      */
     boolean isEnd() throws ReaderException;
+
 }

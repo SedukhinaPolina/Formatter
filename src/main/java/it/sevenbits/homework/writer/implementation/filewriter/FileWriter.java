@@ -1,6 +1,7 @@
  package it.sevenbits.homework.writer.implementation.filewriter;
 
 import it.sevenbits.homework.writer.IWriter;
+import it.sevenbits.homework.writer.WriterException;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

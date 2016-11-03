@@ -1,6 +1,7 @@
 package it.sevenbits.homework.reader.implementation.stringreader;
 
 import it.sevenbits.homework.reader.IReader;
+import it.sevenbits.homework.reader.ReaderException;
 
 /**
  * Reads characters from string.
@@ -25,8 +26,9 @@ public class StringReader implements IReader {
     /**
      * Reads one character.
      * @return get character
+     * @throws ReaderException exception
      */
-    public final char read() {
+    public final char read() throws ReaderException {
         position++;
         return inputString[position - 1];
     }
@@ -35,8 +37,9 @@ public class StringReader implements IReader {
     /**
      * The end of the file verification.
      * @return true if end of string, else false
+     * @throws ReaderException exception
      */
-    public final boolean isEnd() {
+    public final boolean isEnd() throws ReaderException {
         return (position > inputString.length - 1);
     }
 }

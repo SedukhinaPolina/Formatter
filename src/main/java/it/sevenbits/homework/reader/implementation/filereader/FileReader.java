@@ -1,6 +1,7 @@
 package it.sevenbits.homework.reader.implementation.filereader;
 
 import it.sevenbits.homework.reader.IReader;
+import it.sevenbits.homework.reader.ReaderException;
 
 import java.io.*;
 

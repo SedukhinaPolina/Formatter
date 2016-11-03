@@ -1,10 +1,10 @@
 package it.sevenbits.homework.formatter.implementation;
 
 import it.sevenbits.homework.formatter.IFormatter;
-import it.sevenbits.homework.reader.implementation.filereader.ReaderException;
+import it.sevenbits.homework.reader.ReaderException;
 import it.sevenbits.homework.writer.IWriter;
 import it.sevenbits.homework.reader.IReader;
-import it.sevenbits.homework.writer.implementation.filewriter.WriterException;
+import it.sevenbits.homework.writer.WriterException;
 
 
 /**
@@ -34,7 +34,9 @@ public class Formatter implements IFormatter {
                         break;
                     case '}':
                         countOfTabs--;
-                        buffer.insert(buffer.length() - 1, "}\n");
+                        buffer.append("\r");
+                        buffer.append(writeSpaces(countOfTabs));
+                        buffer.append("}\n");
                         break;
                     case ';':
                         buffer.append(";\n");

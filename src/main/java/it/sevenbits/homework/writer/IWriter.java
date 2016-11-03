@@ -1,7 +1,5 @@
 package it.sevenbits.homework.writer;
 
-import it.sevenbits.homework.writer.implementation.filewriter.WriterException;
-
 /**
  * Writes information in different sources.
  */

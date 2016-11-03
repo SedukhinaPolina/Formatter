@@ -1,4 +1,4 @@
- package it.sevenbits.homework.writer.implementation.filewriter;
+ package it.sevenbits.homework.writer;
 
 /**
  * Exception in FileWriter.

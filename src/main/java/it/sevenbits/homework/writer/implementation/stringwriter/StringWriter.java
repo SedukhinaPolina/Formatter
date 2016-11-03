@@ -1,6 +1,7 @@
  package it.sevenbits.homework.writer.implementation.stringwriter;
 
  import it.sevenbits.homework.writer.IWriter;
+ import it.sevenbits.homework.writer.WriterException;
 
  /**
  * Writes information in different sources.
@@ -21,8 +22,9 @@ public class StringWriter implements IWriter {
      /**
       * Writes s in outputString.
       * @param s input string
+      * @throws WriterException exception
       */
-     public final void write(final String s) {
+     public final void write(final String s) throws WriterException {
          stringBuilder.append(s);
      }
 
