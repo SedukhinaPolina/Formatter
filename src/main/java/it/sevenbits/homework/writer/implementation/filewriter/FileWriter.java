@@ -41,4 +41,15 @@ public class FileWriter implements IWriter {
             throw new WriterException(e);
         }
     }
+
+     /**
+      * @throws WriterException exception
+      */
+     public final void close() throws WriterException {
+         try {
+             outputFile.close();
+         } catch (IOException e) {
+             throw new WriterException(e);
+         }
+     }
 }

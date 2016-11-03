@@ -34,7 +34,6 @@ public class Formatter implements IFormatter {
                         break;
                     case '}':
                         countOfTabs--;
-                        buffer.append("\r");
                         buffer.append(writeSpaces(countOfTabs));
                         buffer.append("}\n");
                         break;
@@ -45,7 +44,6 @@ public class Formatter implements IFormatter {
                     default:
                         buffer.append(temp);
                 }
-
             }
             out.write(buffer.toString());
             if (countOfTabs != 0) {

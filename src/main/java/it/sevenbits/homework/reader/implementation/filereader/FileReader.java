@@ -3,7 +3,11 @@ package it.sevenbits.homework.reader.implementation.filereader;
 import it.sevenbits.homework.reader.IReader;
 import it.sevenbits.homework.reader.ReaderException;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.FileNotFoundException;
 
 /**
  * Reads characters from file.
@@ -51,7 +55,6 @@ public class FileReader implements IReader {
             throw new ReaderException(e);
         }
     }
-
     /**
      * The end of the file verification.
      * @return true if end of file, else false

@@ -12,7 +12,8 @@ import it.sevenbits.homework.writer.implementation.stringwriter.StringWriter;
 /**
  * Main class.
  */
-public class Main {
+public final class Main {
+    private Main() {}
     /**
      * main.
      * @param args input arguments
@@ -31,6 +32,7 @@ public class Main {
 
             formatter.format(fileIn, fileOut);
             fileIn.close();
+            fileOut.close();
         } catch (ReaderException e) {
             System.out.print("reader exception in file");
         } catch (WriterException e) {
