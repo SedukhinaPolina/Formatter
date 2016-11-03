@@ -11,6 +11,7 @@ public interface IFormatter {
      * Format the input data and sends to output.
      * @param in input stream
      * @param out output stream
+     * @throws FormatterException exception
      */
-    void format(IReader in, IWriter out);
+    void format(IReader in, IWriter out) throws FormatterException;
 }

@@ -1,5 +1,6 @@
 package it.sevenbits.homework.main;
 
+import it.sevenbits.homework.formatter.FormatterException;
 import it.sevenbits.homework.formatter.implementation.Formatter;
 import it.sevenbits.homework.reader.ReaderException;
 import it.sevenbits.homework.reader.implementation.filereader.FileReader;
@@ -17,8 +18,9 @@ public final class Main {
     /**
      * main.
      * @param args input arguments
+     * @throws FormatterException exception
      */
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws FormatterException {
         String s = "{a;}";
         StringReader in = new StringReader(s);
         StringWriter out = new StringWriter("");
