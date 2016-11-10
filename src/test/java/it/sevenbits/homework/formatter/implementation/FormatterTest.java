@@ -38,16 +38,17 @@ public class FormatterTest {
 
     @Test
     public void handlersTest() throws FormatterException, WriterException, ReaderException {
-        StringReader in = new StringReader("main(){a('abc;'){/*ololo*/\n" +
+        StringReader in = new StringReader("main(){a('{a}bc;'){/*'o'l{o}l\"o\"*/\n" +
                 "//java\n" +
-                "b=\"zzz\";}}");
+                "b=\"zzz\";c=0;}}");
         StringWriter out = new StringWriter("");
         formatter.format(in, out);
         assertEquals("wrong","main() {\n" +
-                "\ta('abc;') {\n" +
-                "\t\t/*ololo*/\n" +
+                "\ta('{a}bc;') {\n" +
+                "\t\t/*'o'l{o}l\"o\"*/\n" +
                 "\t\t//java\n" +
                 "\t\tb=\"zzz\";\n" +
+                "\t\tc=0;\n" +
                 "\t}\n" +
                 "}\n", out.getString());
     }
