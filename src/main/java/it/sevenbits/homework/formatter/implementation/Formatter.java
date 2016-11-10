@@ -1,7 +1,11 @@
 package it.sevenbits.homework.formatter.implementation;
 
+import it.sevenbits.homework.charactersmap.CharactersMap;
 import it.sevenbits.homework.formatter.FormatterException;
 import it.sevenbits.homework.formatter.IFormatter;
+import it.sevenbits.homework.handlers.CodeClearance;
+import it.sevenbits.homework.handlers.IHandler;
+import it.sevenbits.homework.handlers.implementation.CharHandler;
 import it.sevenbits.homework.reader.ReaderException;
 import it.sevenbits.homework.writer.IWriter;
 import it.sevenbits.homework.reader.IReader;
@@ -13,63 +17,31 @@ import it.sevenbits.homework.writer.WriterException;
  */
 public class Formatter implements IFormatter {
 
+    private CharactersMap hashMap = new CharactersMap();
+    private CodeClearance codeClearance = new CodeClearance();
+    private IHandler charHandler = new CharHandler();
     /**
      * Format string.
      * @param in input string
      * @param out output string
      * @throws FormatterException exception
+     * @throws ReaderException exception
+     * @throws WriterException exception
      */
-    public final void format(final IReader in, final IWriter out) throws FormatterException {
+    public void format(final IReader in, final IWriter out) throws FormatterException, ReaderException, WriterException {
         try {
-            int countOfTabs = 0;
+            codeClearance.resetSettings();
             char temp;
             while (!in.isEnd()) {
                 temp = in.read();
-
-                switch (temp) {
-                    case '{':
-                        countOfTabs++;
-                        out.write(" {\n");
-                        out.write(writeSpaces(countOfTabs));
-
-                        break;
-                    case '}':
-                        countOfTabs--;
-                        out.write(writeSpaces(countOfTabs));
-                        out.write("}\n");
-                        break;
-                    case ';':
-                        out.write(";\n");
-                        out.write(writeSpaces(countOfTabs));
-                        break;
-                    default:
-                        out.write("" + temp);
+                if (hashMap.getMap().containsKey(temp)) {
+                    hashMap.getMap().get(temp).handle(temp, codeClearance, out);
+                } else {
+                    charHandler.handle(temp, codeClearance, out);
                 }
             }
-            if (countOfTabs != 0) {
-                out.write("error: incorrect number of braces");
-            }
         } catch (ReaderException e) {
-            System.out.print("Reader exception in formatter");
-            throw new FormatterException(e);
-
-        } catch (WriterException e) {
-            System.out.print("Writer exception in formatter");
             throw new FormatterException(e);
         }
-    }
-
-    /**
-     *
-     * @param countOfTabs count of tabs
-     * @return string with a specified number of spaces
-     */
-
-    private String writeSpaces(final int countOfTabs) {
-        String temp = "";
-        for (int i = 0; i < countOfTabs; i++) {
-            temp += "\t";
-        }
-        return temp;
     }
 }

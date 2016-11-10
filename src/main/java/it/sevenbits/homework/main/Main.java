@@ -19,9 +19,11 @@ public final class Main {
      * main.
      * @param args input arguments
      * @throws FormatterException exception
+     * @throws ReaderException exception
+     * @throws WriterException exception
      */
-    public static void main(final String[] args) throws FormatterException {
-        String s = "{a;}";
+    public static void main(final String[] args) throws FormatterException, WriterException, ReaderException {
+        String s = "main(){a('abc;'){/*ololo*/\n//java\nb=\"zzz\";}}";
         StringReader in = new StringReader(s);
         StringWriter out = new StringWriter("");
         Formatter formatter = new Formatter();

@@ -29,25 +29,31 @@ public class FormatterTest {
     }
 
     @Test
-    public void formatterTest() throws FormatterException {
-        StringReader in = new StringReader("{abc;}");
+    public void formatterTest() throws FormatterException, WriterException, ReaderException {
+        StringReader in = new StringReader("{a;}");
         StringWriter out = new StringWriter("");
         formatter.format(in, out);
-        assertEquals("wrong"," {\n\tabc;\n\t}\n", out.getString());
+        assertEquals("wrong"," {\n\ta;\n}\n", out.getString());
     }
 
     @Test
-    public void formatterWrongBracesTest() throws FormatterException {
-        StringReader in = new StringReader("{}}");
+    public void handlersTest() throws FormatterException, WriterException, ReaderException {
+        StringReader in = new StringReader("main(){a('abc;'){/*ololo*/\n" +
+                "//java\n" +
+                "b=\"zzz\";}}");
         StringWriter out = new StringWriter("");
         formatter.format(in, out);
-        assertEquals("wrong"," {\n\t}\n}\nerror: incorrect number of braces", out.getString());
+        assertEquals("wrong","main() {\n" +
+                "\ta('abc;') {\n" +
+                "\t\t/*ololo*/\n" +
+                "\t\t//java\n" +
+                "\t\tb=\"zzz\";\n" +
+                "\t}\n" +
+                "}\n", out.getString());
     }
-
 
     @Test (expected = FormatterException.class)
     public void formatterReaderExceptionTest() throws IOException, WriterException, ReaderException, FormatterException {
-
         File inFile = File.createTempFile("file", null);
         FileWriter out = new FileWriter(inFile.getAbsolutePath());
         FileReader in = new FileReader(inFile.getAbsolutePath());
@@ -55,4 +61,6 @@ public class FormatterTest {
         formatter.format(in, out);
         fail();
     }
+
+
 }

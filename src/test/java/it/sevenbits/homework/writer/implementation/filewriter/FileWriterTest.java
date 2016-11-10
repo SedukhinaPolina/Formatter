@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 /**
  * Test FileWriter.
@@ -35,9 +36,9 @@ public class FileWriterTest {
     }
 
     @Test(expected = WriterException.class)
-    public void closeWriterExceptionTest() throws WriterException {
-        out.close();
-        out.write("a");
+    public void writerExceptionTest() throws WriterException {
+        new FileWriter(".");
+        fail();
     }
 
 

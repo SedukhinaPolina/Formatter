@@ -45,8 +45,7 @@ public class FileReaderTest {
 
     @Test(expected = ReaderException.class)
     public void closeReaderExceptionTest() throws ReaderException {
-        in.close();
-        in.read();
+        new FileReader(".");
         fail();
     }
 }
