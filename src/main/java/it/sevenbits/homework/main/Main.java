@@ -23,9 +23,7 @@ public final class Main {
      * @throws WriterException exception
      */
     public static void main(final String[] args) throws FormatterException, WriterException, ReaderException {
-        String s = "main(){a('{a}bc;'){/*'o'l{o}l\"o\"*/\n" +
-                "//java\n" +
-                "b=\"zzz\";c=0;}}";
+        String s = "main(){}";
         StringReader in = new StringReader(s);
         StringWriter out = new StringWriter("");
         Formatter formatter = new Formatter();

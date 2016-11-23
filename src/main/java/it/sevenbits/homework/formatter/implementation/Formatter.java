@@ -1,12 +1,12 @@
 package it.sevenbits.homework.formatter.implementation;
 
-import it.sevenbits.homework.charactersmap.CharactersMap;
 import it.sevenbits.homework.formatter.FormatterException;
 import it.sevenbits.homework.formatter.IFormatter;
-import it.sevenbits.homework.handlers.CodeClearance;
-import it.sevenbits.homework.handlers.IHandler;
-import it.sevenbits.homework.handlers.implementation.CharHandler;
+import it.sevenbits.homework.handlers.IndentMaker;
 import it.sevenbits.homework.reader.ReaderException;
+import it.sevenbits.homework.states.IState;
+import it.sevenbits.homework.states.StateChanger;
+import it.sevenbits.homework.states.implementation.DefaultState;
 import it.sevenbits.homework.writer.IWriter;
 import it.sevenbits.homework.reader.IReader;
 import it.sevenbits.homework.writer.WriterException;
@@ -17,9 +17,18 @@ import it.sevenbits.homework.writer.WriterException;
  */
 public class Formatter implements IFormatter {
 
-    private CharactersMap hashMap = new CharactersMap();
-    private CodeClearance codeClearance = new CodeClearance();
-    private IHandler charHandler = new CharHandler();
+    private IndentMaker indentMaker;
+    private IState state;
+    private StateChanger stateChanger;
+
+    /**
+     * Default constructor
+     */
+    public Formatter() {
+        indentMaker = new IndentMaker();
+        state = new DefaultState(indentMaker);
+        stateChanger = new StateChanger();
+    }
     /**
      * Format string.
      * @param in input string
@@ -30,15 +39,11 @@ public class Formatter implements IFormatter {
      */
     public void format(final IReader in, final IWriter out) throws FormatterException, ReaderException, WriterException {
         try {
-            codeClearance.resetSettings();
             char temp;
             while (!in.isEnd()) {
                 temp = in.read();
-                if (hashMap.getMap().containsKey(temp)) {
-                    hashMap.getMap().get(temp).handle(temp, codeClearance, out);
-                } else {
-                    charHandler.handle(temp, codeClearance, out);
-                }
+                state.execute(out, temp);
+                state = stateChanger.getNextState(state, temp);
             }
         } catch (ReaderException e) {
             throw new FormatterException(e);

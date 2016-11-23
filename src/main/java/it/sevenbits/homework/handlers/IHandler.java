@@ -11,10 +11,10 @@ public interface IHandler {
     /**
      * Handle some symbols.
      * @param symbol input symbol
-     * @param codeClearance specific symbols in code
+     * @param indent current indent
      * @param out output stream
      * @throws WriterException if something wrong
      */
 
-    void handle(char symbol, CodeClearance codeClearance, IWriter out) throws WriterException;
+    void handle(char symbol, IndentMaker indent, IWriter out) throws WriterException;
 }
