@@ -30,8 +30,8 @@ public final class Main {
         formatter.format(in, out);
         System.out.print(out.getString());
         try {
-            FileReader fileIn = new FileReader(args[0]);
-            FileWriter fileOut = new FileWriter(args[1]);
+            FileReader fileIn = new FileReader("in.txt");
+            FileWriter fileOut = new FileWriter("out.txt");
             fileIn.close();
             fileOut.close();
         } catch (ReaderException e) {
