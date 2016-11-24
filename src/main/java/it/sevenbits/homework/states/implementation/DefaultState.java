@@ -2,7 +2,10 @@ package it.sevenbits.homework.states.implementation;
 
 import it.sevenbits.homework.handlers.IHandler;
 import it.sevenbits.homework.handlers.IndentMaker;
-import it.sevenbits.homework.handlers.implementation.*;
+import it.sevenbits.homework.handlers.implementation.OpenBraceHandler;
+import it.sevenbits.homework.handlers.implementation.CloseBraceHandler;
+import it.sevenbits.homework.handlers.implementation.NewLineHandler;
+import it.sevenbits.homework.handlers.implementation.CharHandler;
 import it.sevenbits.homework.states.IState;
 import it.sevenbits.homework.writer.IWriter;
 import it.sevenbits.homework.writer.WriterException;
@@ -28,7 +31,6 @@ public class DefaultState implements IState {
         map.put('{', new OpenBraceHandler());
         map.put('}', new CloseBraceHandler());
         map.put('\n', new NewLineHandler());
-        map.put(';', new SemicolonHandler());
         charHandler = new CharHandler();
         this.indent = indent;
     }

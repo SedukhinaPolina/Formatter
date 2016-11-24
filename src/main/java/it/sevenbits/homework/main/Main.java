@@ -29,12 +29,9 @@ public final class Main {
         Formatter formatter = new Formatter();
         formatter.format(in, out);
         System.out.print(out.getString());
-
         try {
-            FileReader fileIn = new FileReader("in.txt");
-            FileWriter fileOut = new FileWriter("out.txt");
-
-            formatter.format(fileIn, fileOut);
+            FileReader fileIn = new FileReader(args[0]);
+            FileWriter fileOut = new FileWriter(args[1]);
             fileIn.close();
             fileOut.close();
         } catch (ReaderException e) {

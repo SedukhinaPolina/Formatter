@@ -15,10 +15,11 @@ public class CanBeCommentState implements IState {
     private IndentMaker indent;
     /**
      * Default constructor.
+     * @param indent current indent
      */
-    public CanBeCommentState() {
+    public CanBeCommentState(final IndentMaker indent) {
         handler = new CharHandler();
-        indent = new IndentMaker();
+        this.indent = indent;
     }
 
     /**

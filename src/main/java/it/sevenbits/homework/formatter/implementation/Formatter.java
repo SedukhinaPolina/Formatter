@@ -6,7 +6,6 @@ import it.sevenbits.homework.handlers.IndentMaker;
 import it.sevenbits.homework.reader.ReaderException;
 import it.sevenbits.homework.states.IState;
 import it.sevenbits.homework.states.StateChanger;
-import it.sevenbits.homework.states.implementation.DefaultState;
 import it.sevenbits.homework.writer.IWriter;
 import it.sevenbits.homework.reader.IReader;
 import it.sevenbits.homework.writer.WriterException;
@@ -26,8 +25,7 @@ public class Formatter implements IFormatter {
      */
     public Formatter() {
         indentMaker = new IndentMaker();
-        state = new DefaultState(indentMaker);
-        stateChanger = new StateChanger();
+        stateChanger = new StateChanger(indentMaker);
     }
     /**
      * Format string.
@@ -39,6 +37,8 @@ public class Formatter implements IFormatter {
      */
     public void format(final IReader in, final IWriter out) throws FormatterException, ReaderException, WriterException {
         try {
+            indentMaker.setCountOfTabs(0);
+            state = stateChanger.initState();
             char temp;
             while (!in.isEnd()) {
                 temp = in.read();

@@ -36,22 +36,6 @@ public class FormatterTest {
         assertEquals("wrong"," {\n\ta;\n}\n", out.getString());
     }
 
-    /*@Test
-    public void handlersTest() throws FormatterException, WriterException, ReaderException {
-        StringReader in = new StringReader("main(){a('{a}bc;'){*//*'o'l{o}l\"o\"*//*\n" +
-                "//java\n" +
-                "b=\"zzz\";c=0;}}");
-        StringWriter out = new StringWriter("");
-        formatter.format(in, out);
-        assertEquals("wrong","main() {\n" +
-                "\ta('{a}bc;') {\n" +
-                "\t\t*//*'o'l{o}l\"o\"*//*\n" +
-                "\t\t//java\n" +
-                "\t\tb=\"zzz\";\n" +
-                "\t\tc=0;\n" +
-                "\t}\n" +
-                "}\n", out.getString());
-    }*/
 
     @Test (expected = FormatterException.class)
     public void formatterReaderExceptionTest() throws IOException, WriterException, ReaderException, FormatterException {

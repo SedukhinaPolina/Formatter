@@ -19,7 +19,9 @@ public class CloseBraceHandler implements IHandler {
      */
     public void handle(final char symbol, final IndentMaker indent, final IWriter out) throws WriterException {
         indent.decCountOfTabs();
+        out.write("\n");
         out.write(indent.makeIndent());
         out.write("}\n");
+        out.write(indent.makeIndent());
     }
 }

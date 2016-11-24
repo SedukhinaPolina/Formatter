@@ -8,10 +8,6 @@ import static java.util.Arrays.fill;
 public class IndentMaker {
     private int countOfTabs = 0;
 
-    public int getCountOfTabs() {
-        return countOfTabs;
-    }
-
     public void setCountOfTabs(final int countOfTabs) {
         this.countOfTabs = countOfTabs;
     }

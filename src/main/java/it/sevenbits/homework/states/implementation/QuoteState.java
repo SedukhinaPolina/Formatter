@@ -15,10 +15,11 @@ public class QuoteState implements IState {
     private IndentMaker indent;
     /**
      * Default constructor.
+     * @param indent current indent
      */
-    public QuoteState() {
+    public QuoteState(final IndentMaker indent) {
         handler = new CharHandler();
-        indent = new IndentMaker();
+        this.indent = indent;
     }
     /**
      * Method for writing char in output stream in "".

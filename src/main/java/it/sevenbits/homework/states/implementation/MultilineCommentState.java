@@ -15,10 +15,11 @@ public class MultilineCommentState implements IState {
     private IndentMaker indent;
     /**
      * Default constructor.
+     * @param indent current indent
      */
-    public MultilineCommentState() {
+    public MultilineCommentState(final IndentMaker indent) {
         handler = new CharHandler();
-        indent = new IndentMaker();
+        this.indent = indent;
     }
     /**
      * Method for writing char in output stream in comment.
