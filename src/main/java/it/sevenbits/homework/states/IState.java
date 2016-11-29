@@ -13,5 +13,5 @@ public interface IState {
      * @param symbol input symbol
      * @throws WriterException exception
      */
-    void execute(IWriter out, char symbol) throws WriterException;
+    void execute(IWriter<String> out, char symbol) throws WriterException;
 }

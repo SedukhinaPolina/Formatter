@@ -28,7 +28,7 @@ public class CharQuoteState implements IState {
      * @param symbol input symbol
      * @throws WriterException exception
      */
-    public void execute(final IWriter out, final char symbol) throws WriterException {
+    public void execute(final IWriter<String> out, final char symbol) throws WriterException {
         handler.handle(symbol, indent, out);
     }
 }

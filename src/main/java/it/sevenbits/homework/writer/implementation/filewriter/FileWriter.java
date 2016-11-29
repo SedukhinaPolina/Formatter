@@ -11,7 +11,7 @@ import java.io.OutputStream;
  /**
  * Writes string to file.
  */
-public class FileWriter implements IWriter {
+public class FileWriter implements IWriter<String> {
      /**
       * output file.
       */

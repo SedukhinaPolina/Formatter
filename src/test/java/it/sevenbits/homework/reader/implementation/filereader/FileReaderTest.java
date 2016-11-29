@@ -1,6 +1,8 @@
 package it.sevenbits.homework.reader.implementation.filereader;
 
+import it.sevenbits.homework.reader.IReader;
 import it.sevenbits.homework.reader.ReaderException;
+import it.sevenbits.homework.writer.IWriter;
 import it.sevenbits.homework.writer.WriterException;
 import it.sevenbits.homework.writer.implementation.filewriter.FileWriter;
 import org.junit.Before;
@@ -17,8 +19,8 @@ import static org.junit.Assert.fail;
  * FileReader class testing.
  */
 public class FileReaderTest {
-    private FileReader in;
-    private FileWriter out;
+    private IReader<Character> in;
+    private IWriter<String> out;
 
     @Before
     public void SetUp() throws WriterException, IOException, ReaderException {
@@ -31,7 +33,7 @@ public class FileReaderTest {
     @Test
     public void readTest() throws WriterException, ReaderException, FileNotFoundException {
         out.write("b");
-        assertEquals("wrong", 'b', in.read());
+        assertEquals("wrong", 'b', (char)in.read());
     }
 
     @Test

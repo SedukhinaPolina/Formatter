@@ -16,7 +16,7 @@ import java.util.Map;
  * Changes state on the received symbol.
  */
 public class StateChanger {
-    private Map<OldState, IState> map;
+    private Map<StateKey, IState> map;
     private IState defaultState;
 
     /**
@@ -24,7 +24,7 @@ public class StateChanger {
      * @param indent current indent
      */
     public StateChanger(final IndentMaker indent) {
-        map = new HashMap<OldState, IState>();
+        map = new HashMap<StateKey, IState>();
         defaultState = new DefaultState(indent);
         IState quoteState = new QuoteState(indent);
         IState charQuoteState = new CharQuoteState(indent);
@@ -33,18 +33,18 @@ public class StateChanger {
         IState lineCommentState = new LineCommentState(indent);
         IState multilineCommentState = new MultilineCommentState(indent);
         IState canBeEndOfMultilineCommentState = new CanBeEndOfMultilineCommentState(indent);
-        map.put(new OldState(defaultState, '\"'), quoteState);
-        map.put(new OldState(defaultState, '\''), charQuoteState);
-        map.put(new OldState(defaultState, ';'), afterSemicolonState);
-        map.put(new OldState(defaultState, '/'), canBeCommentState);
-        map.put(new OldState(quoteState, '\"'), defaultState);
-        map.put(new OldState(charQuoteState, '\''), defaultState);
-        map.put(new OldState(canBeCommentState, '/'), lineCommentState);
-        map.put(new OldState(canBeCommentState, '*'), multilineCommentState);
-        map.put(new OldState(lineCommentState, '\n'), defaultState);
-        map.put(new OldState(multilineCommentState, '*'), canBeEndOfMultilineCommentState);
-        map.put(new OldState(canBeEndOfMultilineCommentState, '/'), defaultState);
-        map.put(new OldState(afterSemicolonState), defaultState);
+        map.put(new StateKey(defaultState, '\"'), quoteState);
+        map.put(new StateKey(defaultState, '\''), charQuoteState);
+        map.put(new StateKey(defaultState, ';'), afterSemicolonState);
+        map.put(new StateKey(defaultState, '/'), canBeCommentState);
+        map.put(new StateKey(quoteState, '\"'), defaultState);
+        map.put(new StateKey(charQuoteState, '\''), defaultState);
+        map.put(new StateKey(canBeCommentState, '/'), lineCommentState);
+        map.put(new StateKey(canBeCommentState, '*'), multilineCommentState);
+        map.put(new StateKey(lineCommentState, '\n'), defaultState);
+        map.put(new StateKey(multilineCommentState, '*'), canBeEndOfMultilineCommentState);
+        map.put(new StateKey(canBeEndOfMultilineCommentState, '/'), defaultState);
+        map.put(new StateKey(afterSemicolonState), defaultState);
     }
 
 
@@ -64,8 +64,8 @@ public class StateChanger {
      * @return new state
      */
     public IState getNextState(final IState state, final Character symbol) {
-        OldState oldState = new OldState(state, symbol);
-        OldState oldStateWithoutSymbol = new OldState(state);
+        StateKey oldState = new StateKey(state, symbol);
+        StateKey oldStateWithoutSymbol = new StateKey(state);
         if (map.containsKey(oldState)) {
             return map.get(oldState);
         }

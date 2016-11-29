@@ -3,7 +3,7 @@ package it.sevenbits.homework.states;
 /**
  * Data for the next state.
  */
-public class OldState {
+public class StateKey {
     private IState oldState;
     private Character symbol;
 
@@ -12,7 +12,7 @@ public class OldState {
      * @param state old state
      * @param symbol current symbol
      */
-    public OldState(final IState state, final Character symbol) {
+    public StateKey(final IState state, final Character symbol) {
         oldState = state;
         this.symbol = symbol;
     }
@@ -21,7 +21,7 @@ public class OldState {
      * Constructor.
      * @param state old state
      */
-    public OldState(final IState state) {
+    public StateKey(final IState state) {
         oldState = state;
     }
 
@@ -33,7 +33,7 @@ public class OldState {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        OldState oldState1 = (OldState) o;
+        StateKey oldState1 = (StateKey) o;
         return (oldState != null) ? oldState.equals(oldState1.oldState) : ((oldState1.oldState == null) &&
                 ((symbol != null) ? symbol.equals(oldState1.symbol) : (oldState1.symbol == null)));
 

@@ -37,7 +37,7 @@ public class AfterSemicolonState implements IState {
      * @param symbol input symbol
      * @throws WriterException exception
      */
-    public void execute(final IWriter out, final char symbol) throws WriterException {
+    public void execute(final IWriter<String> out, final char symbol) throws WriterException {
         if (map.containsKey(symbol)) {
             map.get(symbol).handle(symbol, indent, out);
             return;

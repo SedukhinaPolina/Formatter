@@ -12,7 +12,7 @@ import java.io.FileNotFoundException;
 /**
  * Reads characters from file.
  */
-public class FileReader implements IReader {
+public class FileReader implements IReader<Character> {
     /**
      * input file.
      */
@@ -37,7 +37,7 @@ public class FileReader implements IReader {
      * @return get character
      * @throws ReaderException exception
      */
-    public final char read() throws ReaderException {
+    public final Character read() throws ReaderException {
         try {
             return (char) inputFile.read();
         } catch (IOException e) {

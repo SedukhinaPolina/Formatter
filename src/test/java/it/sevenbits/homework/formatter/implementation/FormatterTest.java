@@ -29,11 +29,67 @@ public class FormatterTest {
     }
 
     @Test
-    public void formatterTest() throws FormatterException, WriterException, ReaderException {
+    public void formatterTestBraces() throws FormatterException, WriterException, ReaderException {
         StringReader in = new StringReader("{a;}");
         StringWriter out = new StringWriter("");
         formatter.format(in, out);
         assertEquals("wrong"," {\n\ta;\n}\n", out.getString());
+    }
+
+    @Test
+    public void formatterTestComment() throws FormatterException, WriterException, ReaderException {
+        StringReader in = new StringReader("//{}\n{}");
+        StringWriter out = new StringWriter("");
+        formatter.format(in, out);
+        assertEquals("wrong","//{}\n {\n\t\n}\n", out.getString());
+    }
+
+    @Test
+    public void formatterTestMultilineComment() throws FormatterException, WriterException, ReaderException {
+        StringReader in = new StringReader("{/*{}*/}");
+        StringWriter out = new StringWriter("");
+        formatter.format(in, out);
+        assertEquals("wrong"," {\n\t/*{}*/\n}\n", out.getString());
+    }
+
+    @Test
+    public void formatterTestQuote() throws FormatterException, WriterException, ReaderException {
+        StringReader in = new StringReader("{\"{}\"}");
+        StringWriter out = new StringWriter("");
+        formatter.format(in, out);
+        assertEquals("wrong"," {\n\t\"{}\"\n}\n", out.getString());
+    }
+
+    @Test
+    public void formatterTestCharQuote() throws FormatterException, WriterException, ReaderException {
+        StringReader in = new StringReader("{'{'}");
+        StringWriter out = new StringWriter("");
+        formatter.format(in, out);
+        assertEquals("wrong"," {\n\t'{'\n}\n", out.getString());
+    }
+
+    @Test
+    public void formatterTestSemicolonWithBrace() throws FormatterException, WriterException, ReaderException {
+        StringReader in = new StringReader("{a;}");
+        StringWriter out = new StringWriter("");
+        formatter.format(in, out);
+        assertEquals("wrong"," {\n\ta;\n}\n", out.getString());
+    }
+
+    @Test
+    public void formatterTestSemicolonWithoutBrace() throws FormatterException, WriterException, ReaderException {
+        StringReader in = new StringReader("{a;b;}");
+        StringWriter out = new StringWriter("");
+        formatter.format(in, out);
+        assertEquals("wrong"," {\n\ta;\n\tb;\n}\n", out.getString());
+    }
+
+    @Test (expected = FormatterException.class)
+    public void formatterTestWrongCountOfBraces() throws FormatterException, WriterException, ReaderException {
+        StringReader in = new StringReader("{}}");
+        StringWriter out = new StringWriter("");
+        formatter.format(in, out);
+        fail();
     }
 
 

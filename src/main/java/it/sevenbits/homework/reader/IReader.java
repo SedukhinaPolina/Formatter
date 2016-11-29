@@ -2,14 +2,15 @@ package it.sevenbits.homework.reader;
 
 /**
  * Reads information from different sources.
+ * @param <T> type
  */
-public interface IReader {
+public interface IReader<T> {
     /**
      * Reads one character.
      * @return character
      * @throws ReaderException exception
      */
-    char read() throws ReaderException;
+    T read() throws ReaderException;
 
 
     /**

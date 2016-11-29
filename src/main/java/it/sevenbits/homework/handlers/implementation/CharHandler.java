@@ -17,7 +17,7 @@ public class CharHandler implements IHandler {
      * @param out    output stream
      * @throws WriterException if something wrong
      */
-    public void handle(final char symbol, final IndentMaker indent, final IWriter out) throws WriterException {
+    public void handle(final char symbol, final IndentMaker indent, final IWriter<String> out) throws WriterException {
         out.write(symbol + "");
     }
 }

@@ -17,7 +17,7 @@ public class NewLineHandler implements IHandler {
      * @param out    output stream
      * @throws WriterException if something wrong
      */
-    public void handle(final char symbol, final IndentMaker indent, final IWriter out) throws WriterException {
+    public void handle(final char symbol, final IndentMaker indent, final IWriter<String> out) throws WriterException {
         out.write("\n");
         out.write(indent.makeIndent());
         out.write(symbol + "");

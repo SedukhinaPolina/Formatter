@@ -6,7 +6,7 @@ import it.sevenbits.homework.reader.ReaderException;
 /**
  * Reads characters from string.
  */
-public class StringReader implements IReader {
+public class StringReader implements IReader<Character> {
     /**
      * input string.
      */
@@ -28,7 +28,7 @@ public class StringReader implements IReader {
      * @return get character
      * @throws ReaderException exception
      */
-    public final char read() throws ReaderException {
+    public final Character read() throws ReaderException {
         position++;
         return inputString[position - 1];
     }

@@ -16,5 +16,5 @@ public interface IHandler {
      * @throws WriterException if something wrong
      */
 
-    void handle(char symbol, IndentMaker indent, IWriter out) throws WriterException;
+    void handle(char symbol, IndentMaker indent, IWriter<String> out) throws WriterException;
 }

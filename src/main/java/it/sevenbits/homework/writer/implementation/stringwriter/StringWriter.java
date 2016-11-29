@@ -6,7 +6,7 @@
  /**
  * Writes information in different sources.
  */
-public class StringWriter implements IWriter {
+public class StringWriter implements IWriter<String> {
 
      /**
       * Tool to build a string.

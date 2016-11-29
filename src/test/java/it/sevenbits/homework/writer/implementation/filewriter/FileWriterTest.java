@@ -32,7 +32,7 @@ public class FileWriterTest {
     @Test
     public void writeTest() throws WriterException, ReaderException, FileNotFoundException {
         out.write("a");
-        assertEquals("wrong", in.read(), 'a');
+        assertEquals("wrong", 'a', (char)in.read());
     }
 
     @Test(expected = WriterException.class)

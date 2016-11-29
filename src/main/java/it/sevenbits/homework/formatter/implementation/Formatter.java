@@ -17,7 +17,6 @@ import it.sevenbits.homework.writer.WriterException;
 public class Formatter implements IFormatter {
 
     private IndentMaker indentMaker;
-    private IState state;
     private StateChanger stateChanger;
 
     /**
@@ -32,13 +31,11 @@ public class Formatter implements IFormatter {
      * @param in input string
      * @param out output string
      * @throws FormatterException exception
-     * @throws ReaderException exception
-     * @throws WriterException exception
      */
-    public void format(final IReader in, final IWriter out) throws FormatterException, ReaderException, WriterException {
+    public void format(final IReader<Character> in, final IWriter<String> out) throws FormatterException {
         try {
             indentMaker.setCountOfTabs(0);
-            state = stateChanger.initState();
+            IState state = stateChanger.initState();
             char temp;
             while (!in.isEnd()) {
                 temp = in.read();
@@ -46,6 +43,10 @@ public class Formatter implements IFormatter {
                 state = stateChanger.getNextState(state, temp);
             }
         } catch (ReaderException e) {
+            throw new FormatterException(e);
+        } catch (WriterException e) {
+            throw new FormatterException(e);
+        } catch (NegativeArraySizeException e) {
             throw new FormatterException(e);
         }
     }
