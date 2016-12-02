@@ -13,7 +13,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 /**
  * FileReader class testing.
@@ -23,7 +22,7 @@ public class FileReaderTest {
     private IWriter<String> out;
 
     @Before
-    public void SetUp() throws WriterException, IOException, ReaderException {
+    public void setUp() throws WriterException, IOException, ReaderException {
         File inFile = File.createTempFile("file", null);
         out = new FileWriter(inFile.getAbsolutePath());
         in = new FileReader(inFile.getAbsolutePath());
@@ -43,11 +42,5 @@ public class FileReaderTest {
             in.read();
         }
         assertEquals("wrong", true, in.isEnd());
-    }
-
-    @Test(expected = ReaderException.class)
-    public void closeReaderExceptionTest() throws ReaderException {
-        new FileReader(".");
-        fail();
     }
 }

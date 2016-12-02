@@ -1,14 +1,15 @@
 package it.sevenbits.homework.states;
 
 import it.sevenbits.homework.handlers.IndentMaker;
-import it.sevenbits.homework.states.implementation.DefaultState;
-import it.sevenbits.homework.states.implementation.QuoteState;
 import it.sevenbits.homework.states.implementation.AfterSemicolonState;
 import it.sevenbits.homework.states.implementation.CanBeCommentState;
 import it.sevenbits.homework.states.implementation.CanBeEndOfMultilineCommentState;
 import it.sevenbits.homework.states.implementation.CharQuoteState;
+import it.sevenbits.homework.states.implementation.DefaultState;
 import it.sevenbits.homework.states.implementation.LineCommentState;
 import it.sevenbits.homework.states.implementation.MultilineCommentState;
+import it.sevenbits.homework.states.implementation.QuoteState;
+
 import java.util.HashMap;
 import java.util.Map;
 

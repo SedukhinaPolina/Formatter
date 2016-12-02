@@ -102,6 +102,4 @@ public class FormatterTest {
         formatter.format(in, out);
         fail();
     }
-
-
 }
