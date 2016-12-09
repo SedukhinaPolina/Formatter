@@ -5,19 +5,19 @@ import it.sevenbits.homework.reader.ReaderException;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 
 /**
  * Reads characters from file.
  */
 public class FileReader implements IReader<Character> {
-    /**
-     * input file.
-     */
-    private InputStream inputFile;
-
+    private Reader inputFile;
+    private int inputSymbol;
     /**
      * Default constructor.
      * @param fileName is input file
@@ -25,8 +25,11 @@ public class FileReader implements IReader<Character> {
      */
     public FileReader(final String fileName) throws ReaderException {
         try {
-            inputFile = new FileInputStream(new File(fileName));
+            InputStream fileStream = new FileInputStream(new File(fileName));
+            inputFile = new InputStreamReader(fileStream, "utf-8");
         } catch (FileNotFoundException e) {
+            throw new ReaderException(e);
+        } catch (UnsupportedEncodingException e) {
             throw new ReaderException(e);
         }
 
@@ -39,7 +42,8 @@ public class FileReader implements IReader<Character> {
      */
     public final Character read() throws ReaderException {
         try {
-            return (char) inputFile.read();
+            inputSymbol = inputFile.read();
+            return (char) inputSymbol;
         } catch (IOException e) {
             throw new ReaderException(e);
         }
@@ -61,11 +65,6 @@ public class FileReader implements IReader<Character> {
      * @throws ReaderException exception
      */
     public final boolean isEnd() throws ReaderException {
-        try {
-            int count = inputFile.available();
-            return (count == 0);
-        } catch (IOException e) {
-            throw new ReaderException(e);
-        }
+            return (inputSymbol == -1);
     }
 }

@@ -16,7 +16,7 @@ public class DefaultStateTest {
     private StringWriter out;
     private IndentMaker indent;
 
-    @Test
+    /*@Test
     public void defaultStateWithOpenBraceTest() throws WriterException {
         indent = new IndentMaker();
         out = new StringWriter("");
@@ -52,6 +52,6 @@ public class DefaultStateTest {
         state = new DefaultState(indent);
         state.execute(out, 'a');
         assertEquals("wrong", "a", out.getString());
-    }
+    }*/
 
 }

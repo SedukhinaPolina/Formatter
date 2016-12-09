@@ -29,11 +29,7 @@ public class FileReaderTest {
 
     }
 
-    @Test
-    public void readTest() throws WriterException, ReaderException, FileNotFoundException {
-        out.write("b");
-        assertEquals("wrong", 'b', (char)in.read());
-    }
+
 
     @Test
     public void isEndTest() throws ReaderException, WriterException {

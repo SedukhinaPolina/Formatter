@@ -3,10 +3,13 @@
 import it.sevenbits.homework.writer.IWriter;
 import it.sevenbits.homework.writer.WriterException;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 
  /**
  * Writes string to file.
@@ -15,7 +18,7 @@ public class FileWriter implements IWriter<String> {
      /**
       * output file.
       */
-    private OutputStream outputFile;
+    private Writer outputFile;
 
     /**
      * Default constructor.
@@ -24,7 +27,8 @@ public class FileWriter implements IWriter<String> {
      */
      public FileWriter(final String fileName) throws WriterException {
          try {
-             outputFile = new FileOutputStream(fileName);
+             OutputStream fileStream = new FileOutputStream(new File(fileName));
+             outputFile = new OutputStreamWriter(fileStream);
          } catch (FileNotFoundException e) {
              throw new WriterException(e);
          }
@@ -36,7 +40,7 @@ public class FileWriter implements IWriter<String> {
      */
     public final void write(final String s) throws  WriterException {
         try {
-            outputFile.write(s.getBytes());
+            outputFile.write(s);
         } catch (IOException e) {
             throw new WriterException(e);
         }

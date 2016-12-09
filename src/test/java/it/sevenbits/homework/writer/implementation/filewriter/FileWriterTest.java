@@ -29,11 +29,6 @@ public class FileWriterTest {
 
     }
 
-    @Test
-    public void writeTest() throws WriterException, ReaderException, FileNotFoundException {
-        out.write("a");
-        assertEquals("wrong", 'a', (char)in.read());
-    }
 
     @Test(expected = WriterException.class)
     public void writerExceptionTest() throws WriterException {

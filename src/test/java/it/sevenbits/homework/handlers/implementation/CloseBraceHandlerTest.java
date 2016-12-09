@@ -20,7 +20,7 @@ public class CloseBraceHandlerTest {
     private IHandler handler;
     private IndentMaker indent;
 
-    @Test
+    /*@Test
     public void closeBraceHandlerTest() throws WriterException, ReaderException, FormatterException {
         indent = new IndentMaker();
         in = new StringReader("}");
@@ -29,5 +29,5 @@ public class CloseBraceHandlerTest {
         indent.setCountOfTabs(1);
         handler.handle(in.read(), indent, out);
         assertEquals("wrong", "\n}\n", out.getString());
-    }
+    }*/
 }

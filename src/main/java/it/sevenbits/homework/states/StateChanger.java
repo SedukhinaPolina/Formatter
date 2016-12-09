@@ -1,9 +1,8 @@
 package it.sevenbits.homework.states;
 
 import it.sevenbits.homework.handlers.IndentMaker;
+import it.sevenbits.homework.lexer.Token;
 import it.sevenbits.homework.states.implementation.AfterSemicolonState;
-import it.sevenbits.homework.states.implementation.CanBeCommentState;
-import it.sevenbits.homework.states.implementation.CanBeEndOfMultilineCommentState;
 import it.sevenbits.homework.states.implementation.CharQuoteState;
 import it.sevenbits.homework.states.implementation.DefaultState;
 import it.sevenbits.homework.states.implementation.LineCommentState;
@@ -14,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Changes state on the received symbol.
+ * Changes state on the received token.
  */
 public class StateChanger {
     private Map<StateKey, IState> map;
@@ -30,21 +29,17 @@ public class StateChanger {
         IState quoteState = new QuoteState(indent);
         IState charQuoteState = new CharQuoteState(indent);
         IState afterSemicolonState = new AfterSemicolonState(indent);
-        IState canBeCommentState = new CanBeCommentState(indent);
         IState lineCommentState = new LineCommentState(indent);
         IState multilineCommentState = new MultilineCommentState(indent);
-        IState canBeEndOfMultilineCommentState = new CanBeEndOfMultilineCommentState(indent);
-        map.put(new StateKey(defaultState, '\"'), quoteState);
-        map.put(new StateKey(defaultState, '\''), charQuoteState);
-        map.put(new StateKey(defaultState, ';'), afterSemicolonState);
-        map.put(new StateKey(defaultState, '/'), canBeCommentState);
-        map.put(new StateKey(quoteState, '\"'), defaultState);
-        map.put(new StateKey(charQuoteState, '\''), defaultState);
-        map.put(new StateKey(canBeCommentState, '/'), lineCommentState);
-        map.put(new StateKey(canBeCommentState, '*'), multilineCommentState);
-        map.put(new StateKey(lineCommentState, '\n'), defaultState);
-        map.put(new StateKey(multilineCommentState, '*'), canBeEndOfMultilineCommentState);
-        map.put(new StateKey(canBeEndOfMultilineCommentState, '/'), defaultState);
+        map.put(new StateKey(defaultState, new Token("\"")), quoteState);
+        map.put(new StateKey(defaultState, new Token("\'")), charQuoteState);
+        map.put(new StateKey(defaultState, new Token(";")), afterSemicolonState);
+        map.put(new StateKey(quoteState, new Token("\"")), defaultState);
+        map.put(new StateKey(charQuoteState, new Token("\'")), defaultState);
+        map.put(new StateKey(lineCommentState, new Token("\n")), defaultState);
+        map.put(new StateKey(defaultState, new Token("//")), lineCommentState);
+        map.put(new StateKey(defaultState, new Token("/*")), multilineCommentState);
+        map.put(new StateKey(multilineCommentState, new Token("*/")), defaultState);
         map.put(new StateKey(afterSemicolonState), defaultState);
     }
 
@@ -61,17 +56,17 @@ public class StateChanger {
     /**
      * Returns new state
      * @param state old state
-     * @param symbol current symbol
+     * @param token current token
      * @return new state
      */
-    public IState getNextState(final IState state, final Character symbol) {
-        StateKey oldState = new StateKey(state, symbol);
-        StateKey oldStateWithoutSymbol = new StateKey(state);
+    public IState getNextState(final IState state, final Token token) {
+        StateKey oldState = new StateKey(state, token);
+        StateKey oldStateWithoutToken = new StateKey(state);
         if (map.containsKey(oldState)) {
             return map.get(oldState);
         }
-        if (map.containsKey(oldStateWithoutSymbol)) {
-            return map.get(oldStateWithoutSymbol);
+        if (map.containsKey(oldStateWithoutToken)) {
+            return map.get(oldStateWithoutToken);
         }
             return state;
     }

@@ -1,5 +1,6 @@
 package it.sevenbits.homework.formatter;
 
+import it.sevenbits.homework.lexer.Token;
 import it.sevenbits.homework.reader.IReader;
 import it.sevenbits.homework.writer.IWriter;
 
@@ -13,5 +14,5 @@ public interface IFormatter {
      * @param out output stream
      * @throws FormatterException exception in formatter
      */
-    void format(IReader<Character> in, IWriter<String> out) throws FormatterException;
+    void format(IReader<Token> in, IWriter<String> out) throws FormatterException;
 }

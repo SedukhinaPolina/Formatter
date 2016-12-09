@@ -1,20 +1,22 @@
 package it.sevenbits.homework.states;
 
+import it.sevenbits.homework.lexer.Token;
+
 /**
  * Data for the next state.
  */
 public class StateKey {
     private IState oldState;
-    private Character symbol;
+    private Token token;
 
     /**
      * Constructor.
      * @param state old state
-     * @param symbol current symbol
+     * @param token current token
      */
-    public StateKey(final IState state, final Character symbol) {
+    public StateKey(final IState state, final Token token) {
         oldState = state;
-        this.symbol = symbol;
+        this.token = token;
     }
 
     /**
@@ -35,14 +37,14 @@ public class StateKey {
         }
         StateKey oldState1 = (StateKey) o;
         return (oldState != null) ? oldState.equals(oldState1.oldState) : ((oldState1.oldState == null) &&
-                ((symbol != null) ? symbol.equals(oldState1.symbol) : (oldState1.symbol == null)));
+                ((token != null) ? token.equals(oldState1.token) : (oldState1.token == null)));
 
     }
 
     @Override
     public int hashCode() {
         int result = oldState != null ? oldState.hashCode() : 0;
-        result = 31 * result + (symbol != null ? symbol.hashCode() : 0);
+        result = 31 * result + (token != null ? token.hashCode() : 0);
         return result;
     }
 }

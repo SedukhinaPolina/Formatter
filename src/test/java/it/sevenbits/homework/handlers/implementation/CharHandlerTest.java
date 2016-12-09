@@ -20,12 +20,12 @@ public class CharHandlerTest {
     private IHandler handler;
     private IndentMaker indent;
 
-    @Test
+    /*@Test
     public void charHandlerTest() throws WriterException, ReaderException, FormatterException {
         in = new StringReader("a");
         out = new StringWriter("");
         handler = new CharHandler();
         handler.handle(in.read(), new IndentMaker(), out);
         assertEquals("wrong", "a", out.getString());
-    }
+    }*/
 }

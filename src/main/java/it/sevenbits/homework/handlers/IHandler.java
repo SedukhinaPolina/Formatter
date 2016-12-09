@@ -1,5 +1,6 @@
 package it.sevenbits.homework.handlers;
 
+import it.sevenbits.homework.lexer.Token;
 import it.sevenbits.homework.writer.IWriter;
 import it.sevenbits.homework.writer.WriterException;
 
@@ -10,11 +11,11 @@ public interface IHandler {
 
     /**
      * Handle some symbols.
-     * @param symbol input symbol
+     * @param token input token
      * @param indent current indent
      * @param out output stream
      * @throws WriterException if something wrong
      */
 
-    void handle(char symbol, IndentMaker indent, IWriter<String> out) throws WriterException;
+    void handle(Token token, IndentMaker indent, IWriter<String> out) throws WriterException;
 }
