@@ -31,6 +31,9 @@ public class IndentMaker {
      * @return indent as a string
      */
     public String makeIndent() {
+        if (countOfTabs < 0) {
+            countOfTabs = 0;
+        }
         char[] array = new char[countOfTabs];
         fill(array, '\t');
         return new String(array);

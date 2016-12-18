@@ -2,10 +2,10 @@ package it.sevenbits.homework.reader.implementation.lexemesreader;
 
 import it.sevenbits.homework.lexer.LexemesHandlerSelector;
 import it.sevenbits.homework.lexer.LexerState;
+import it.sevenbits.homework.lexer.LexerStateChanger;
 import it.sevenbits.homework.lexer.Token;
 import it.sevenbits.homework.reader.IReader;
 import it.sevenbits.homework.reader.ReaderException;
-import it.sevenbits.homework.lexer.LexerStateChanger;
 
 /**
  * Read tokens.
@@ -16,6 +16,7 @@ public class Lexer implements IReader<Token> {
     private LexerState state;
     private LexerStateChanger stateChanger;
     private LexemesHandlerSelector handlerSelector;
+    private Character temp;
     /**
      * Constructor
      * @param in input stream
@@ -34,13 +35,19 @@ public class Lexer implements IReader<Token> {
      */
     public Token read() throws ReaderException {
         if (state.equals(new LexerState("return"))) {
+            lexeme.append(temp);
+            state = stateChanger.initState();
             return new Token(lexeme.toString());
         }
+        lexeme = new StringBuilder("");
         while (!in.isEnd()) {
-            Character temp = in.read();
+            temp = in.read();
             state = stateChanger.getNextState(state, temp);
-            if (handlerSelector.getHandler(state).execute(lexeme, temp)) {
-                return new Token(lexeme.toString());
+            handlerSelector.getHandler(state, temp).execute(lexeme, temp);
+            if (handlerSelector.getHandler(state, temp).isEndOfToken()) {
+                String token = lexeme.toString();
+                lexeme = new StringBuilder("");
+                return new Token(token);
             }
         }
         return new Token("");

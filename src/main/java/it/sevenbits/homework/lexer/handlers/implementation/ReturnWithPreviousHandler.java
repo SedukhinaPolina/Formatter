@@ -3,9 +3,9 @@ package it.sevenbits.homework.lexer.handlers.implementation;
 import it.sevenbits.homework.lexer.handlers.ILexemesHandler;
 
 /**
- * End of token.
+ * Returns token with previous symbol.
  */
-public class ReturnHandler implements ILexemesHandler {
+public class ReturnWithPreviousHandler implements ILexemesHandler {
     /**
      * Build lexemes
      *
@@ -13,6 +13,7 @@ public class ReturnHandler implements ILexemesHandler {
      * @param symbol        current symbol
      */
     public void execute(final StringBuilder stringBuilder, final Character symbol) {
+        stringBuilder.append(symbol);
     }
 
     /**

@@ -1,30 +1,27 @@
-package it.sevenbits.homework.states;
-
-
-import it.sevenbits.homework.lexer.Token;
+package it.sevenbits.homework.lexer;
 
 /**
- * Data for select handler.
+ * Key for the next handler.
  */
-public class HandlerKey {
-    private IState state;
-    private Token token;
+public class LexemesHandlerKey {
+    private LexerState state;
+    private Character symbol;
 
     /**
      * Constructor
+     * @param symbol input symbol
      * @param state current state
-     * @param token input token
      */
-    HandlerKey(final IState state, final Token token) {
+    public LexemesHandlerKey(final LexerState state, final char symbol) {
+        this.symbol = symbol;
         this.state = state;
-        this.token = token;
     }
 
     /**
      * Constructor
      * @param state current state
      */
-    HandlerKey(final IState state) {
+    public LexemesHandlerKey(final LexerState state) {
         this.state = state;
     }
 
@@ -37,17 +34,17 @@ public class HandlerKey {
             return false;
         }
 
-        HandlerKey that = (HandlerKey) o;
+        LexemesHandlerKey that = (LexemesHandlerKey) o;
 
         return (state != null) ? state.equals(that.state) : ((that.state == null) &&
-                ((token != null) ? token.equals(that.token) : (that.token == null)));
+                ((symbol != null) ? symbol.equals(that.symbol) : (that.symbol == null)));
 
     }
 
     @Override
     public int hashCode() {
         int result = state != null ? state.hashCode() : 0;
-        result = 31 * result + (token != null ? token.hashCode() : 0);
+        result = 31 * result + (symbol != null ? symbol.hashCode() : 0);
         return result;
     }
 }

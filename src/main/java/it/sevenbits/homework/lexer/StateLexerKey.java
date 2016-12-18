@@ -1,30 +1,43 @@
 package it.sevenbits.homework.lexer;
 
 /**
- * Created by polly on 09.12.16.
+ * Data for the next state.
  */
 public class StateLexerKey {
     private LexerState state;
     private Character symbol;
 
-    public StateLexerKey(LexerState state) {
+    /**
+     * constructor
+     * @param state state
+     */
+    public StateLexerKey(final LexerState state) {
         this.state = state;
     }
 
-    public StateLexerKey(LexerState state, Character symbol) {
+    /**
+     * constructor
+     * @param state state
+     * @param symbol symbol
+     */
+    public StateLexerKey(final LexerState state, final Character symbol) {
         this.state = state;
         this.symbol = symbol;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         StateLexerKey that = (StateLexerKey) o;
 
-        if (state != null ? !state.equals(that.state) : that.state != null) return false;
-        return symbol != null ? symbol.equals(that.symbol) : that.symbol == null;
+        return (state != null) ? state.equals(that.state) : ((that.state == null) &&
+                ((symbol != null) ? symbol.equals(that.symbol) : (that.symbol == null)));
 
     }
 

@@ -22,7 +22,9 @@ public class Token {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Token token1 = (Token) o;
 
