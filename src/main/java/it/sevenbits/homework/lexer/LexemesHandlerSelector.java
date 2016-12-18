@@ -4,7 +4,6 @@ import it.sevenbits.homework.lexer.handlers.ILexemesHandler;
 import it.sevenbits.homework.lexer.handlers.implementation.AddHandler;
 import it.sevenbits.homework.lexer.handlers.implementation.ReturnHandler;
 import it.sevenbits.homework.lexer.handlers.implementation.ReturnWithPreviousHandler;
-import it.sevenbits.homework.lexer.handlers.implementation.SkipHandler;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,10 +23,8 @@ public class LexemesHandlerSelector {
         LexerState returnState = new LexerState("return");
         LexerState returnWithPreviousState = new LexerState("return with previous");
         LexerState continueState = new LexerState("continue");
-        LexerState skipState = new LexerState("skip");
         map.put(new LexemesHandlerKey(addState), new AddHandler());
         map.put(new LexemesHandlerKey(continueState), new AddHandler());
-        map.put(new LexemesHandlerKey(skipState), new SkipHandler());
         map.put(new LexemesHandlerKey(returnState, '*'), new ReturnWithPreviousHandler());
         map.put(new LexemesHandlerKey(returnState, '/'), new ReturnWithPreviousHandler());
         map.put(new LexemesHandlerKey(returnState), new ReturnHandler());

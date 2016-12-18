@@ -7,6 +7,7 @@ import it.sevenbits.homework.reader.ReaderException;
 import it.sevenbits.homework.reader.implementation.filereader.FileReader;
 import it.sevenbits.homework.reader.implementation.lexemesreader.Lexer;
 import it.sevenbits.homework.reader.implementation.stringreader.StringReader;
+import it.sevenbits.homework.writer.IWriter;
 import it.sevenbits.homework.writer.WriterException;
 import it.sevenbits.homework.writer.implementation.filewriter.FileWriter;
 import it.sevenbits.homework.writer.implementation.stringwriter.StringWriter;
@@ -18,6 +19,8 @@ import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
 
 /**
  * Formatter class testing.
@@ -90,4 +93,5 @@ public class FormatterTest {
         formatter.format(lexer, out);
         fail();
     }
+
 }

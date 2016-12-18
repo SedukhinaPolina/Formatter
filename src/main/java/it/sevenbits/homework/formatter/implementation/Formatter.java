@@ -47,8 +47,6 @@ public class Formatter implements IFormatter {
             throw new FormatterException(e);
         } catch (WriterException e) {
             throw new FormatterException(e);
-        } catch (NegativeArraySizeException e) {
-            throw new FormatterException(e);
         }
     }
 }

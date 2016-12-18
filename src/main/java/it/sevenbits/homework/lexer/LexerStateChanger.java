@@ -15,15 +15,11 @@ public class LexerStateChanger {
      */
     public LexerStateChanger() {
         map = new HashMap<StateLexerKey, LexerState>();
-        LexerState skipState = new LexerState("skip");
         LexerState returnState = new LexerState("return");
         LexerState returnWithPreviousState = new LexerState("return with previous");
         LexerState continueState = new LexerState("continue");
-        map.put(new StateLexerKey(skipState, ' '), skipState);
-        map.put(new StateLexerKey(skipState, '\n'), skipState);
         map.put(new StateLexerKey(returnState), addState);
         map.put(new StateLexerKey(returnWithPreviousState), addState);
-        map.put(new StateLexerKey(skipState), returnState);
         map.put(new StateLexerKey(addState, '{'), returnState);
         map.put(new StateLexerKey(addState, '}'), returnState);
         map.put(new StateLexerKey(addState, '('), returnState);

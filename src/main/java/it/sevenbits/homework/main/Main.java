@@ -9,12 +9,18 @@ import it.sevenbits.homework.reader.implementation.filereader.FileReader;
 import it.sevenbits.homework.reader.implementation.lexemesreader.Lexer;
 import it.sevenbits.homework.writer.implementation.filewriter.FileWriter;
 import it.sevenbits.homework.writer.WriterException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
  * Main class.
  */
 public final class Main {
+    /**
+     * logger
+     */
+    final static Logger logger = LoggerFactory.getLogger(Main.class);
     private Main() {}
     /**
      * main.
@@ -26,16 +32,20 @@ public final class Main {
     public static void main(final String[] args) throws FormatterException, WriterException, ReaderException {
         try {
             FileReader in = new FileReader(args[0]);
+            logger.info("input file is opened");
             FileWriter out = new FileWriter(args[1]);
+            logger.info("output file is opened");
             IReader<Token> lexer = new Lexer(in);
             Formatter formatter = new Formatter();
             formatter.format(lexer, out);
             in.close();
+            logger.info("input file is closed");
             out.close();
+            logger.info("output file is closed");
         } catch (ReaderException e) {
-            System.out.print("reader exception in file");
+            logger.info("reader exception in file");
         } catch (WriterException e) {
-            System.out.print("writer exception in file");
+            logger.info("writer exception in file");
         }
 
     }
