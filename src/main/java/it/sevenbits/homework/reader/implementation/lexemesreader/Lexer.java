@@ -35,7 +35,6 @@ public class Lexer implements IReader<Token> {
      */
     public Token read() throws ReaderException {
         if (state.equals(new LexerState("return"))) {
-            lexeme.append(temp);
             state = stateChanger.initState();
             return new Token(lexeme.toString());
         }
@@ -46,11 +45,11 @@ public class Lexer implements IReader<Token> {
             handlerSelector.getHandler(state, temp).execute(lexeme, temp);
             if (handlerSelector.getHandler(state, temp).isEndOfToken()) {
                 String token = lexeme.toString();
-                lexeme = new StringBuilder("");
+                lexeme = new StringBuilder(temp + "");
                 return new Token(token);
             }
         }
-        return new Token("");
+        return new Token(lexeme.toString());
     }
 
     /**
@@ -60,6 +59,6 @@ public class Lexer implements IReader<Token> {
      * @throws ReaderException exception
      */
     public boolean isEnd() throws ReaderException {
-        return in.isEnd();
+        return in.isEnd() && lexeme.toString().equals("");
     }
 }

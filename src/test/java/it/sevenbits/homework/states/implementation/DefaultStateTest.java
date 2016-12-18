@@ -1,6 +1,7 @@
 package it.sevenbits.homework.states.implementation;
 
 import it.sevenbits.homework.handlers.IndentMaker;
+import it.sevenbits.homework.lexer.Token;
 import it.sevenbits.homework.states.IState;
 import it.sevenbits.homework.writer.WriterException;
 import it.sevenbits.homework.writer.implementation.stringwriter.StringWriter;
@@ -16,12 +17,12 @@ public class DefaultStateTest {
     private StringWriter out;
     private IndentMaker indent;
 
-    /*@Test
+    @Test
     public void defaultStateWithOpenBraceTest() throws WriterException {
         indent = new IndentMaker();
         out = new StringWriter("");
         state = new DefaultState(indent);
-        state.execute(out, '{');
+        state.execute(out, new Token("{"));
         assertEquals("wrong", " {\n\t", out.getString());
     }
 
@@ -31,7 +32,7 @@ public class DefaultStateTest {
         out = new StringWriter("");
         indent.setCountOfTabs(2);
         state = new DefaultState(indent);
-        state.execute(out, '}');
+        state.execute(out, new Token("}"));
         assertEquals("wrong", "\n\t}\n\t", out.getString());
     }
 
@@ -41,7 +42,7 @@ public class DefaultStateTest {
         out = new StringWriter("");
         indent.setCountOfTabs(2);
         state = new DefaultState(indent);
-        state.execute(out, '\n');
+        state.execute(out, new Token("\n"));
         assertEquals("wrong", "\n\t\t\n", out.getString());
     }
 
@@ -50,8 +51,8 @@ public class DefaultStateTest {
         indent = new IndentMaker();
         out = new StringWriter("");
         state = new DefaultState(indent);
-        state.execute(out, 'a');
+        state.execute(out, new Token("a"));
         assertEquals("wrong", "a", out.getString());
-    }*/
+    }
 
 }

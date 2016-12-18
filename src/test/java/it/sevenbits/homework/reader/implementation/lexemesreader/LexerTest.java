@@ -4,7 +4,6 @@ import it.sevenbits.homework.lexer.Token;
 import it.sevenbits.homework.reader.IReader;
 import it.sevenbits.homework.reader.ReaderException;
 import it.sevenbits.homework.reader.implementation.stringreader.StringReader;
-import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
@@ -14,7 +13,6 @@ import static junit.framework.TestCase.assertEquals;
  */
 public class LexerTest {
     private IReader<Character> in;
-    private Lexer lexer;
 
     @Test
     public void lexemeTest() throws ReaderException {
@@ -65,7 +63,12 @@ public class LexerTest {
         assertEquals("error", "/*;*/", lexer.read().getToken() + lexer.read().getToken() + lexer.read().getToken());
     }
 
-
-
-
+    @Test
+    public void isEndTest() throws ReaderException {
+        in = new StringReader("/*");
+        IReader<Token> lexer = new Lexer(in);
+        lexer.read();
+        lexer.read();
+        assertEquals("error", true, lexer.isEnd());
+    }
 }
